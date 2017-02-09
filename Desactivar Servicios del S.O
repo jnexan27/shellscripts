@@ -1,0 +1,23 @@
+
+Disable a service with update-rc.d under Debian (update resistant)
+2010-02-10 19:38
+
+The well known way to remove a service from system boot under Debian / Ubuntu, without removing the package:
+
+update-rc.d -f mysql remove
+
+This command removes all /etc/rc*/*mysql* symbolic links. At next boot, the service is not started.
+
+Problem: when you update the mysql package (aptitude update), symlinks are created again.
+
+Solution: in the last update-rc.d versions, there are disable / enable commands:
+
+update-rc.d mysql disable
+
+Useful if like me you only start apache or mysql some times for Web development. Also useful if you share files with Samba and only want to start the daemon occasionaly.
+
+Note: update-rc.d --help tells us that The disable|enable API is not stable and might change in the future.
+
+
+CREATE USER jmanzanilla@localhost IDENTIFIED BY '123456';
+GRANT ALL PRIVILEGES ON wordpress.* TO jmanzanilla@localhost IDENTIFIED BY '123456';

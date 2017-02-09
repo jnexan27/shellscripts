@@ -1,0 +1,35 @@
+
+
+;
+; Seccion para Bases de Datos - ACD - IVR - ASR - APL de Gysmo 1.8 Urbina
+;
+; DB
+gysmotrdbprod           IN      A       172.29.3.151
+gysmotrdbp1             IN      CNAME   vm-172-29-3-68.cloud0.tr.p2p.dom.
+gysmotrdbp2             IN      CNAME   vm-172-29-3-69.cloud0.tr.p2p.dom.
+;
+; ACD
+gysmotracdp1            IN      CNAME   vm-172-29-3-60.cloud0.tr.p2p.dom.
+gysmotracdp2            IN      CNAME   vm-172-29-3-61.cloud0.tr.p2p.dom.
+gysmotracdp3            IN      CNAME   vm-172-29-3-62.cloud0.tr.p2p.dom.
+gysmotracdp4            IN      CNAME   vm-172-29-3-63.cloud0.tr.p2p.dom.
+;
+; ASR
+gysmotrasrp1            IN      CNAME   vm-172-29-3-70.cloud0.tr.p2p.dom.
+gysmotrasrp2            IN      CNAME   vm-172-29-3-71.cloud0.tr.p2p.dom.
+gysmotrasrp3            IN      CNAME   vm-172-29-3-72.cloud0.tr.p2p.dom.
+gysmotrasrp4            IN      CNAME   vm-172-29-3-73.cloud0.tr.p2p.dom.
+;
+; IVR
+gysmotrivrp1            IN      CNAME   vm-172-29-3-64.cloud0.tr.p2p.dom.
+gysmotrivrp2            IN      CNAME   vm-172-29-3-65.cloud0.tr.p2p.dom.
+gysmotrivrp3            IN      CNAME   vm-172-29-3-66.cloud0.tr.p2p.dom.
+gysmotrivrp4            IN      CNAME   vm-172-29-3-67.cloud0.tr.p2p.dom.
+;
+; APL
+gysmotrivrp1            IN      CNAME   vm-172-29-3-64.cloud0.tr.p2p.dom.
+gysmotrivrp2            IN      CNAME   vm-172-29-3-65.cloud0.tr.p2p.dom.
+gysmotrivrp3            IN      CNAME   vm-172-29-3-66.cloud0.tr.p2p.dom.
+gysmotrivrp4            IN      CNAME   vm-172-29-3-67.cloud0.tr.p2p.dom.
+;
+

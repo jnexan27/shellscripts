@@ -1,0 +1,82 @@
+#################################################
+#  Creacion de Notificacion de usuario          #
+#Creado por Jesus Manzanilla Infraestructura T.I#
+#################################################
+
+Dentro de todos los IVR de Mpsanp se le configurara lo siguiente:
+1. Cuatro Sets que proporcionan la interconexion con las configuraciones de notificacion de usuario
+2. Un ejecutable o AGI el cual contempla las caracteristicas de la consulta al servicio de notificacion de usuario
+3. Una Subvalidacion que indica una accion de ir hacia otro modulo obtener una respuesta y retornar nuevamente con la respuesta del otro modulo
+
+########################
+#        Los Sets      #
+########################
+NUMERO=02392488888
+NAME_IVR=Master1 >>>>>>>>>> Cantidad de Master Configurados
+NUM_MASTER=231221212 >>>>>> Numero de master configurado
+SERVICIO=14 >>>>>>>>>>>>>>> Servicio de consulta
+
+########################
+#       AGI            #
+########################
+agi://localhost:4580/ConsultNumber.agi>>>
+NUMERO=${NUMERO}&>>>>>>>>>>>>>>>>>>>>>>>>  ############
+NAME_IVR=${NAME_IVR}&>>>>>>>>>>>>>>>>>>>>  #PARAMETROS#
+NUM_MASTER=${NUM_MASTER}&>>>>>>>>>>>>>>>>  ############
+SERVICIO=${SERVICIO}>>>>>>>>>>>>>>>>>>>>>
+
+#######################
+# Subvalidacion       #
+#######################
+Contexto= subvalidateusuario>>>>>> Nombre del ivr
+Extension= s >>>>>>>>>>>>>>>>>>>>> PARAMETRO siempre sera s
+
+############################################
+#CONFIGURACION DE IVR DE SUBVALIDATEUSUARIO#
+############################################
+
+Extension S
+Goto If $[${NUM_ROW_NOTI}=0] si la condicion es FALSE ir a  goto NOTI_TRANS de resultar TRUE colocar extension de retorno 
+
+Extension NOTI_TRANS
+Goto if $[${NOTI_TRANS_1}=0] si es TRUE ir a goto SIN_OPERADOR si es FALSE ir a goto TRANSFER
+
+Extension SIN_OPERADOR
+PlayBack
+Goto OPCIONES_SIN
+
+Extension OPCIONES_SIN
+READ OPCIONES_SIN
+GOTO IF (TRUE)$["${OPCIONES_SIN}" =""] GOTO TIMEOUT (FALSE) DECISION_SIN
+
+Extension DECISION_SIN
+GOTO IF (TRUE) $["${OPCIONES_SIN}"=1] OPCION-1 (FALSE) OPCION-2
+
+Extension OPCION-1
+GOTO SIN_OPERADOR (OPCION PARA REPETIR INFORMACION)
+
+Extension OPCION-2
+AGI SIP/troncal-ss/${NUM_MASTER}
+
+Extension TRANSFER
+PlayBack
+Goto OPCIONES_TR
+
+Extenxion OPCIONES_TR
+READ OPCIONES_TR
+GOTO IF (TRUE) $["${OPCIONES_TR}" =""] TIMEOUT1 (FALSE) DECISION_TR
+
+Extension DECISION_TR
+GOTO IF (TRUE) $[$[${OPCIONES_TR}>=1] || $[${OPCIONES_TR}<=3]] OPCI-${OPCI} (FALSE) TIMEOUT1
+
+Extension OPCI-1 (REPETIR)
+Extension OPCI-2 (INTRODUCIR OTRO NUMERO)
+Extension OPCI-3 (TRANSFERENCIA)
+
+Fin , con esto se finaliza la configuracion de notificacion de usuario para MPSANP
+
+
+
+
+
+

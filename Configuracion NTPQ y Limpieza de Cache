@@ -1,0 +1,25 @@
+############################################
+Validacion del NTPQ para horario desincrono#
+############################################
+
+
+Ejecutamos lo siguiente en consola y como super usuario:
+
+ntpq -np 
+nos muestra informacion del servicio de sincronizacion del NTP
+/etc/init.d/ntp 
+Para iniciar el servicio 
+ntpdate-debian *Para sincronizar contra el ntp
+date 
+para ver la hora y fecha
+ntpq -np 
+nos muestra informacion del servicio de sincronizacion del NTP
+
+##############
+Limpiar cache#
+##############
+
+Ejecutamos:
+
+sync && echo 3 > /proc/sys/vm/drop_caches
+

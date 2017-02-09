@@ -1,0 +1,4 @@
+Source /home/jmelendez/keystonerc_*
+nova list
+nova start ID
+Se puede filtrar la lista de instancias por awk y luego aplicar un grep por nombre y finalmente un exec o xargs para la ejecucion de un comando
