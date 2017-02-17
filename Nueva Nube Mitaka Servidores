@@ -1,0 +1,11 @@
+Puerto Acces ComputerAnterior   ComputeNuevo
+
+22            Computer01          Controller01
+23            Computer02          Computer01
+25            Controller01TR      Computer02
+26            Computer05          Computer03
+28            Computer07          Computer04 
+09            Computer18          Computer05
+39            Computer30          Computer06
+
+

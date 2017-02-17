@@ -1,0 +1,5 @@
+//Pasos Para Realizar Git Pull y SVN en CANTV
+#Ingresar al servidor solicitado apl,ivr,asr,acd dependiendo de esto ir a la ruta /(x)cantv/#snp(x)/siccanp
+#En esa ruta realizar el siguiente comando sudo git pull , esto solicitara usuario y pass, #las cuales son tu usuario de dominio y pass de aca de GYSMO , luego el proceso iniciara  #solo y ya estara finalizado el proceso de git pull satisfactoriamente
+#Luego en esa misma ruta realizar svn update y luego svn commit -m 'fechadeldia', si #solicita usuario y contraseña utilizar tu usuario y contraseña de CANTV
+#Luego de realizar la validacion de credenciales el proceso iniciara normalmente y finalizara en breve , finalmente realizar un svn update y esta listo

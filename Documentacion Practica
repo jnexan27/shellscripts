@@ -1,0 +1,6 @@
+lsof +L1 ve archivos zombies
+du -csh peso de carpetas listadas
+logrotate -vf /etc/logrotate.d/asterisk  para forzar a rotar los archivos
+
+
+

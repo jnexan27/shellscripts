@@ -1,0 +1,11 @@
+database-ipaddress=dbcluster-desarrollo.hc.p2p.dom
+database-port=9916
+database-name=psnpp02
+database-username=psnpp02
+database-password=1f6261ddc60694d46646c2850cb80149
+
+
+
+172.16.31.154 servidor OwnCloud
+zabbix-agent
+
