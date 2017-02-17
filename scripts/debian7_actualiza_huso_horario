@@ -1,0 +1,38 @@
+!/bin/bash -x
+# Script of Automated Configuration of Huso Horario Debian 
+# Created by the department Infraestructura Tecnologica 
+# GYSMO CORPORACION.- 
+#
+#       Developed by:
+#       Jesus Manzanilla - Analista de Infraestructura | jmanzanilla@gysmo.co
+#
+# Date: 09 de Abril de 2017
+# 
+# Comments:
+#       Compatible only with: 
+#       - Debian 7 x64
+#       - Debian 8 x64
+#
+# Observations:
+#       This script must be executed by only ROOT
+#       ********************************EXECUTE ONLY ROOT**************************************
+#Starting Script:
+
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+
+
+	echo "Configurando dependencias para actualizar el huso horario en semillas Debian"
+		unalias cp;wget http://mirror.hc.p2p.dom/debian/pool/main/t/tzdata/tzdata_2016d-0+deb7u1_all.deb -O /tmp/tzdata_2016d-0+deb7u1_all.deb;dpkg -i /tmp/tzdata_2016d-0+deb7u1_all.deb;cp /usr/share/zoneinfo/America/Caracas /etc/localtime;zdump -v /etc/localtime
+		sleep 5
+	echo "Actualizando Paqueterias"
+		aptitude update -y
+		sleep 5
+	echo "Instalando cofiguraciones necesarias para la actualizacion del Huso Horario"
+		aptitude -y install tzdata-java
+		sleep 3
+		cp /usr/share/javazi/America/Caracas /var/lib/jvm/jdk1.6.0_45/jre/lib/zi/America/
+	echo "Finalizando Configuraciones espere ..."
+		sleep 3
+	echo "Configuracion Finalizada Saliendo del Script, Creado Por el Dpto De Infraestructura"
+                reboot
