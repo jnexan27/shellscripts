@@ -1,0 +1,10 @@
+Ejecutar Instancia mediante Nova:
+nova boot --nic port-id=10ba215a-853d-4d25-983f-88138f54c1fc --flavor TEL-M3-EXTRA-HUGE --availability-zone produccion --image Debian-7-64-Cloud --key-name=openstack-infra IVR-GYSMO-AT-01
+
+Crear BD para migracion 
+GRANT ALL PRIVILEGES ON gysmol.* TO 'migrateusers'@'%' IDENTIFIED BY 'd4ng3r08s' WITH GRANT OPTION;
+
+
+Validar puerto de firewall y desactivarlo
+neutron port-show 10ba215a-853d-4d25-983f-88138f54c1fc
+neutron port-update --port_security_enabled=false 10ba215a-853d-4d25-983f-88138f54c1fc

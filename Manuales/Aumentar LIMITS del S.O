@@ -1,0 +1,33 @@
+En un servidor en producción con bastante carga puede ocurrir errores tipo "Too many open files" o algo parecido. Se debe a que en Linux se pueden establecer limites de ficheros abiertos simultaneamente y ésta limitación es por usuario. Para solucionarlo hay que cambiar la configuración en varios sitios, pero primero hay que comprobar la configuración actual:
+
+    # ulimit -n
+
+esto nos indicará la cantidad máxima por usuario y sessión. El valor por defecto es 1024, lo que no es suficiente para Apache y Tomcat, ya que trabajan con muchos ficheros temporales y los necesita mantener abiertos por questiones de rendimiento. Para cambiar este valor:
+
+    #ulimit -n 75000
+
+Este comando aplicará el cámbio en terminos de la sesión actual. Para hacerlo persistente tenemos que editar los limites a nivel de configuración del sistema:
+
+     
+
+    # vi /etc/security/limits.conf
+
+    root       soft    nofile   10000
+    root       hard    nofile   30000
+    *          soft    nofile   100000
+    *          hard    nofile   300000
+
+El patrón "*" se refiere a todos los usuarios , también se puede definir para cada uno por separado. Una pregunta lógica que surge aqui es ¿Y por qué hay que poner los valores separados para el root?  Pues ni idea. Pero, al menos en CentOS 5.4, si no se ponen los parametros del root por separado - no funciona correctamente. Luego, aparte de limites por usuario y sesión, existen limites a nivel del todo SO. Para ajustarlos hay que hacer lo siguiente:
+
+    # vi /etc/sysctl.conf
+    fs.file-max = 100000
+
+Guardar el cambio y 
+
+    # sysctl -p
+
+Comprobar que la configuración tuvo efecto:
+
+    # sysctl fs.file-max
+
+ Para asegurarse de que todos los cambios se aplicaron correctamente, recomiendo hacer el logout de la sesión, volver a entrar y ejecutar las comprobaciones de ulimit y sysctl. 

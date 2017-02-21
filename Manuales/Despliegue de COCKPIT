@@ -1,0 +1,47 @@
+Laboratorio de Prueba de Plataforma COCKPIT
+
+#S.O Centos 7  Arquitectura 64
+$Paqueteria Actualizada corriendo yum update -y 
+
+#Instalamos Cockpit
+$yum install cockpit
+
+#Habilitamos con el arranque del S.O
+$sudo systemctl enable --now cockpit.socket
+
+#En dado caso si nuestra Instancia utiliza el Firewall de Linux 
+sudo firewall-cmd --permanent --zone=public --add-service=cockpit
+sudo firewall-cmd --reload
+
+#Finalmente nos Logeamos al servidor y el puerto 9090 con el usuario y clave que administra el servidor
+
+
+#S.O Debian 8  Arquitectura 64
+
+#Agrego la siguiente linea a /etc/apt/sources.list 
+
+$ deb http://repo-cockpitproject.rhcloud.com/debian/ jessie main
+
+Importamos la llave de seguridad 
+
+$sudo apt-key adv --keyserver sks-keyservers.net --recv-keys F1BAA57C
+
+Actualizamos la paqueteria 
+
+$sudo apt-get update
+
+Instalamos Cockpit
+
+$sudo apt-get install cockpit
+
+Inciamos Cockpit para que levante con el S.O
+
+sudo systemctl enable cockpit.socket
+sudo systemctl start cockpit.socket
+
+#Finalmente nos Logeamos al servidor y el puerto 9090 con el usuario y clave que administra el servidor
+
+    
+
+ 
+

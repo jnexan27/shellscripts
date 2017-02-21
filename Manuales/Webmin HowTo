@@ -1,0 +1,8 @@
+Instalacion de Webmin
+
+apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python webmin dependencias
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.831_all.deb llave de descarga
+dpkg --install webmin_1.831_all.deb instalacion
+
+
+
