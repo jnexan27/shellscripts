@@ -1,0 +1,104 @@
+unzip -d /opt/osticket /tmp/osTicket-v1.9.12.zip 
+
+
+
+ln -s /opt/osticket/upload /var/www/html/support
+
+
+create database osticketdb
+CREATE USER 'osticketuser'@'localhost' IDENTIFIED BY 'P@ssw0rd';
+GRANT ALL ON osticketdb.* TO 'osticketuser'@'localhost';
+flush privileges;
+exit;
+
+nano /etc/httpd/conf.d/vhosts.conf
+IncludeOptional vhosts.d/*.conf
+
+mkdir /etc/httpd/vhosts.d/
+nano /etc/httpd/vhosts.d/osticket.gysmo.at.conf
+
+
+Instalar LAMP CENTOS 7
+yum install httpd openssl mod_ssl
+
+systemctl restart httpd
+systemctl status httpd
+systemctl enable httpd
+
+yum install mariadb mariadb-server mysql
+
+systemctl restart mariadb
+systemctl status mariadb
+systemctl enable mariadb
+
+mysql_secure_installation
+
+mysql -u root -p
+
+systemctl restart httpd
+systemctl status httpd
+
+yum install php-mysql php-gd php-ldap php-odbc php-pear php-xml php-xmlrpc php-mbstring php-snmp php-mcrypt
+
+
+mkdir -p /opt/osticket
+wget http://osticket.com/sites/default/files/download/osTicket-v1.9.12.zip
+
+unzip -d /opt/osticket /tmp/osTicket-v1.9.12.zip 
+ln -s /opt/osticket/upload /var/www/html/support
+
+chown apache: -R /var/www/html/support /opt/osticket
+
+cd /var/www/html/support 
+cp include/ost-sampleconfig.php include/ost-config.php
+
+
+
+
+create database osticketdb;
+CREATE USER 'osticketuser'@'localhost' IDENTIFIED BY 'P@ssw0rd';
+GRANT ALL ON osticketdb.* TO 'osticketuser'@'localhost';
+flush privileges;
+exit;
+
+yum install php-imap
+
+nano /etc/httpd/conf.d/vhosts.conf
+IncludeOptional vhosts.d/*.conf
+
+mkdir /etc/httpd/vhosts.d/
+nano /etc/httpd/vhosts.d/osticket.gysmo.at.dom.conf
+
+<VirtualHost 172.16.12.44:80>
+ServerAdmin webmaster@yourdomain.com
+DocumentRoot "/var/www/html/support/"
+ServerName osticket.gysmo.at.dom
+ServerAlias osticket.gysmo.at.dom
+ErrorLog "/var/log/httpd/osticket.gysmo.at.dom-error_log"
+CustomLog "/var/log/httpd/osticket.gysmo.at.dom-access_log" combined
+
+<Directory "/var/www/html/support/">
+DirectoryIndex index.html index.php
+Options FollowSymLinks
+AllowOverride All
+Require all granted
+</Directory>
+</VirtualHost>
+
+
+
+Agregar la sincronizacion con AD/LDAP
+Descargar de osticket.com el plugin de ldap (ldap-auth )y guardarlo en la ruta de /plugins de la carpeta de support de osticket
+Ingresar al panel de control administrativo e ir a la pestaña de administracion y seguido a plugins , agregar nuevo plugin y esperar para instalar
+
+Datos para sincronizar contra el Ldap de Gysmo
+
+Default Domain :172.16.1.178
+DNS Server: 172.16.15.25 
+LDAP Servers: 172.16.1.178
+Search User : ldap@gysmo.dom
+Password d4ng3r0u52017++
+Search Base : OU=Gerencia de Proyecto Wamani,OU=Corporacion Gysmo,DC=gysmo,DC=dom
+Ldap Schema : AD Microsoft
+Staff Authentication:	Enable authentication of staff members
+

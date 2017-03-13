@@ -1,0 +1,126 @@
+#Script Version 1.0.a
+#Realizado por Jesus Manzanilla Infraestructura TI
+#Fecha de Version 08072016
+#Declaracion de Variables
+DATE=$(date +%Y-%m-%d)
+install_directory=`pwd`
+#Limpiando la pantalla
+clear
+OSFlavor="unknown"
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+#Determinando el Sistema de este servidor
+#
+			echo "Validando el S.O (Solo Aplica este script para distribuciones basadas en CentOS)"
+			if [ -f /etc/redhat-release ]
+	then
+			OSFlavor='redhat-based'
+			fi	
+
+			echo -e "\n"
+			echo "El Sistema Operativo de este Servidor es: $OSFlavor Continuando la instalacion"
+			sleep 2
+			if [ $OSFlavor == "unknown" ]
+	then 
+			echo "Sistema Operativo NO SOPORTADO. Abortando el script"
+	exit 0
+fi
+			if [ $(id -u) -eq 0 ]; then
+			clear
+                        echo ""
+                        tput cup 1 18 ; echo -n "****************************************"
+                        tput cup 2 18 ; echo -n "VALIDADOR DE INSTALACION DE DEPENDENCIAS"
+                        tput cup 3 18 ; echo -n "****************************************"
+                        echo ""
+			git_installed=`which git |wc -l`
+			webserver=`which httpd mysql php |wc -l`
+			mariadb=`which mysql |wc -l`
+			
+			if [ $git_installed == 0 ] 
+			then
+	        		echo "Instalando git para servidor apl"
+        		yum -y upgrade
+       			yum -y install git
+			else
+				echo "Ya se encuentra instalado"
+			fi
+
+			echo ""
+			if [ $webserver == 0 ]
+			then
+				echo "Instalando Apache,Php,My_sql"
+			yum -y install httpd
+			yum -y install php php-mysql
+			yum -y install php-ldap
+			yum -y install php-pgsql
+				echo "Finalizado con exito"
+			else
+				echo "Los servicios Web ya se encuentran instalados"
+				echo "Continuando con la configuracion de My_sql"
+			fi
+			sleep 5
+	 		echo "Agregando los repositorios de my_sql on Centos"
+			if [ -f /etc/yum.repos.d/mariadb101.repo ]
+			then
+			echo "Ya se encuentra el archivo de repositorio "
+			else
+			touch /etc/yum.repos.d/mariadb101.repo
+                        echo "# Implementado por: Infraestructura TI" >> /etc/yum.repos.d/mariadb101.repo
+                        echo "#Generado el $DATE automaticamente por APL Installer of Infraestructure" >> /etc/yum.repos.d/mariadb101.repo
+                        echo "name = MariaDB" >> /etc/yum.repos.d/mariadb101.repo
+                        echo "baseurl = http://172.16.15.25/mariadb-centos/10.1/centos7-amd64" >> /etc/yum.repos.d/mariadb101.repo
+			echo "gpgkey=http://172.16.15.25/mariadb-centos/RPM-GPG-KEY-MariaDB" >> /etc/yum.repos.d/mariadb101.repo
+			echo "gpgcheck=1" >> /etc/yum.repos.d/mariadb101.repo
+			echo "Agregado"
+fi
+			sleep 5
+			echo "Instalando servicios de My_sql"
+			if [ $mariadb == 0 ]
+then
+			yum -y install mysql-server
+else
+			echo "ya esta instalado el servidor de Base de datos"
+			sleep 5
+fi
+			echo "Configurando parametros de archivo php.ini"
+			sed -r -i 's/upload_max_filesize.*=.*/upload_max_filesize\ =\ 100M/g' /etc/php.ini
+			sleep 5
+			
+                        echo "####################################"
+                        echo "#Tomando Recursos de Main-config...#"
+                        echo "####################################"
+
+			if [ -f main-config.rc ]
+
+        		then
+                		source main-config.rc
+else
+                		echo "No puedo acceder a mi archivo de configuración"
+                		echo "Revise que esté ejecutando el instalador en su directorio"
+                		echo "Abortando !!!!."
+                		echo ""
+                		exit 0
+fi
+
+			echo "#########################################################################"
+                        echo "#Instalacion de dependencias finalizada con exito... por favor espere...#"
+                        echo "#########################################################################"
+                        sleep 5
+			echo ""
+                        clear
+			tput cup 1 18 ; echo -n "***********************************"
+                        tput cup 2 18 ; echo -n "INSTALADOR DE NODEJS VERSION 0.12.0"
+                        tput cup 3 18 ; echo -n "***********************************"
+                        sleep 5
+                        echo ""
+                        cd /usr/src/
+			if [ -d node-js-install/ ]
+
+                        then
+                             	echo "Ya se encuentra el instalador en la ruta seleccionada"
+else
+                        git clone http://jmanzanilla@172.16.10.121/redmine/infraestructura/node-install/node-js-install.git
+fi
+                        cd node-js-install/
+                        echo "Prueba Finalizada del script parte 1 Beta"
+
+fi
