@@ -1,0 +1,47 @@
+acd-sounds  greetings  ivr-sounds  llamadas  moh  predictivo  reportes  telefonia-banesco  tmp  upload_files  videos
+
+
+172.16.17.2:/mnt/asterisk01/gysmo_chat-demo     /mnt/asterisk01         nfs     vers=3,tcp      0       0
+
+
+IP del Servidor: 172.16.12.47 
+Nombre del usuario: telefonia
+Grupo Seleccionado: telefonia
+Contraseña: bcf182f93d8603a77e94
+
+./install-asterisk.sh install produccion full nossl
+
+172.16.0.5   Hector Gonzalez
+172.16.1.103 Nicol Bolivar
+172.16.1.104 Wilfredo Sulbaran
+172.16.1.105 Nelson Boullon
+172.16.1.112 Disponible (Backend)
+
+Infraestructura
+172.16.1.5 Jesus Manzanilla
+172.16.1.9 Ali Peña
+172.16.0.10 Evelyn Blanco
+172.16.0.87 Jonathan Melendez
+
+Virtuales 
+172.16.1.115
+172.16.0.79
+
+Desarrollo
+172.16.1.122  Nohely Peraza 
+172.16.1.111  Estefania Blanco
+172.16.1.90   Yelitza Rojas
+172.16.1.138  Yuliendry Diaz
+172.16.0.175  Rosalinda Colela
+172.16.1.113  Lucinia Sanchez
+172.16.0.90   Ana Maria
+172.16.0.15   Rismayli Moscan
+1172.16.0.174 Xiomara Marin
+172.16.       Joel Perez
+172.16.1.107  Norivel Oviedo
+172.16.0.107  Jessi Mora
+172.16. Freddy Romero
+172.16. Mayerling Rubio
+
+
+
