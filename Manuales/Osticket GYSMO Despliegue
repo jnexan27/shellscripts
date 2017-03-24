@@ -102,3 +102,45 @@ Search Base : OU=Gerencia de Proyecto Wamani,OU=Corporacion Gysmo,DC=gysmo,DC=do
 Ldap Schema : AD Microsoft
 Staff Authentication:	Enable authentication of staff members
 
+
+Agregar a php.ini
+date.timezone = "America/Caracas"
+
+Configuracion de temas de ayuda ,colas ,equipos, agentes, Departamentos y SLA de Osticket
+
+
+
+rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+rpm -Uvh http://www.elrepo.org/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+yum install yum-plugin-fastestmirror
+yum --enablerepo=elrepo-kernel install kernel-ml
+grub2-set-default 0
+
+
+vi /etc/rc.local
+
+/usr/sbin/ethtool -s enp7s0f0 speed 1000 duplex full autoneg off
+/usr/sbin/ethtool -s enp7s0f1 speed 1000 duplex full autoneg off
+
+sleep 30
+
+/usr/local/bin/script-autoconfig-server.sh > /var/log/autoconfig-hostname.log
+
+Guardas cambios
+
+reboot
+
+Todos estos pasos los vas a hacer en:
+
+
+172.29.0.4 - compute03
+172.29.0.6 - compute05
+172.29.0.7 - compute06
+
+Configuracion de DB osticket en cluster corporativo
+create database osticketdb default character set utf8;
+GRANT ALL PRIVILEGES ON osticketdb.* TO 'osticketuser'@'%' IDENTIFIED BY 'd4ng3r08s' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+
+
