@@ -1,0 +1,128 @@
+Los Usuarios/Contraseñas por defecto son:
+
+    glpi/glpi para la cuenta del administrador
+    tech/tech para la cuenta de técnico
+    normal/normal para la cuenta normal
+    post-only/postonly para la cuenta postonly
+
+Puede modificar o liminar estas cuentas como también sus datos iniciales
+
+
+SET PASSWORD FOR ‘root’@’localhost’ = PASSWORD(‘P@ssw0rd’);
+
+
+resource postgresql {
+    protocol C;
+    disk {
+        # on I/O errors, detach device
+        on-io-error detach;
+    }
+
+    meta-disk internal;
+    device /dev/drbd1;
+
+    syncer {
+        verify-alg sha1;
+        rate 40M;
+    }
+
+    net {
+        allow-two-primaries;
+    }
+
+    on vm-172-16-10-41.cloud0.hc.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.11.118:7789;
+        meta-disk internal;
+    }
+    on vm-172-16-10-42.cloud0.hc.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.11.119:7789;
+        meta-disk internal;
+    }
+}
+
+/var/nfs/backups/gysmo-adm_backups
+
+172.16.1.79:/var/nfs/backups/gysmo-adm_backups     /mnt/backups         nfs     vers=3,tcp      0       0
+
+
+
+resource postgresql {
+    protocol C;
+    disk {
+        # on I/O errors, detach device
+        on-io-error detach;
+    }
+
+    meta-disk internal;
+    device /dev/drbd1;
+
+    syncer {
+        verify-alg sha1;
+        rate 110M;
+    }
+
+    net {
+        allow-two-primaries;
+    }
+
+    on dbat-node1.at.gysmo.dom {
+        device /dev/drbd0;
+        disk /dev/sda3;
+        address 10.1.150.205:7789;
+        meta-disk internal;
+    }
+    on dbat-node2.at.gysmo.dom {
+        device /dev/drbd0;
+        disk /dev/sda3;
+        address 10.1.150.206:7789;
+        meta-disk internal;
+    }
+}
+
+Desarrollo
+ACD
+IP del Servidor: 172.16.11.87 
+Nombre del usuario: quality
+Grupo Seleccionado: quality
+Contraseña: 9f7bfd01dca2724ee7e0
+
+IP del Servidor: 172.16.11.91 
+Nombre del usuario: quality
+Grupo Seleccionado: quality
+Contraseña: 825bb692252ca734ac49
+
+Base de Datos
+IP del Servidor: snppdb-dev.hc.p2p.dom 
+Nombre del usuario: quality
+Grupo Seleccionado: quality
+Contraseña: 70290f09cb8135921535
+
+APL
+IP del Servidor: 172.16.11.106 
+Nombre del usuario: quality
+Grupo Seleccionado: quality
+Contraseña: 57db5d3302327c76dafa
+
+
+
+
+
+
+
+Juan 
+74/105 g por dia de proteinas pesando 62
+TMB 1623 Edad 21
+Masa Grasa 11.38
+50.62 Masa Muscular
+% MG 18.35 Fitness
+21%24% Fitness
+IMC 21.5
+2799 Kc Energia Por Dia
+
+
+
+

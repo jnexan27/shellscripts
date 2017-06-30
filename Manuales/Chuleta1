@@ -1,0 +1,20 @@
+create database ocsinventory default character set utf8;
+GRANT ALL PRIVILEGES ON ocsinventory.* TO 'ocs'@'%' IDENTIFIED BY 'P@ssw0rd' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+
+wget -O /etc/yum.repos.d/bareos.repo http://download.bareos.org/bareos/release/latest/CentOS_7/bareos.repo
+
+https://172.16.11.65/loleaflet/dist/loleaflet.html
+
+
+create database nextclouddb default character set utf8;
+GRANT ALL PRIVILEGES ON nextclouddb.* TO 'nextcloud'@'%' IDENTIFIED BY 'P@ssw0rd' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+docker run -t -d -p 127.0.0.1:9980:9980 -e 'domain=\\172.16.11.65\\' --restart always --cap-add MKNOD collabora/code
+
+GRANT ALL PRIVILEGES ON glpi.* TO 'glpiuser'@'%' IDENTIFIED BY 'P@ssw0rd' WITH GRANT OPTION;
+
+
+server = http://172.16.11.73/plugins/fusioninventory/front/plugin_fusioninventory.communication.php

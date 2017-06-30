@@ -5,9 +5,6 @@ acd-sounds  greetings  ivr-sounds  llamadas  moh  predictivo  reportes  telefoni
 
 
 IP del Servidor: 172.16.12.47 
-Nombre del usuario: telefonia
-Grupo Seleccionado: telefonia
-Contraseña: bcf182f93d8603a77e94
 
 ./install-asterisk.sh install produccion full nossl
 

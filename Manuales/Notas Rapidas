@@ -1,0 +1,383 @@
+Llave de descarga al repo de Bareos
+
+# wget -O /etc/yum.repos.d/bareos.repo http://download.bareos.org/bareos/release/latest/CentOS_7/bareos.repo
+
+Instalacion mediante YUM
+
+# yum install bareos bareos-database-mysql
+
+
+
+apt-get update && apt-get install -y language-pack-en-base && export LC_ALL=en_US.UTF-8 && export LANG=en_US.UTF-8 && apt-get install -y software-properties-common && add-apt-repository -y ppa:ondrej/php5-5.6 && apt-get update && apt-get -y upgrade
+
+
+GYSMO ADM 
+
+- Calidad: 172.16.11.180.
+
+- Desarrollo: 172.16.11.58.
+
+MPSANP:
+
+
+dbcluster-desarrollo.hc.p2p.dom
+
+psnpp01
+
+9915
+
+
+dbcluster-desarrollo.hc.p2p.dom
+
+psnpp02
+
+9916
+
+
+Gysmo desarrollo:
+
+172.16.10.147
+
+gysmo
+
+9911
+
+
+172.16.10.147
+
+gysmo_cc
+
+9912
+
+
+dbcluster-desarrollo.hc.p2p.dom
+
+gysmo
+
+9911
+
+
+dbcluster-desarrollo.hc.p2p.dom
+
+gysmo_cc
+
+9912
+
+
+gysmo calidad:
+
+dbcluster-calidad.hc.p2p.dom
+
+gysmo
+
+9911
+
+
+dbcluster-calidad.hc.p2p.dom
+
+gysmo_cc
+
+9912
+
+gysmoADM desarrollo:
+
+db-gysmoadm-dev.hc.p2p.dom
+
+gysmol_temp
+
+
+gysmoADM calidad:
+
+db-gysmoadm-qa.hc.p2p.dom
+
+gysmol
+
+
+datapro desarrollo:
+
+172.16.31.150:3306
+
+mysqldump -h 172.16.31.175 -u gysmol -pp2rs4n --single-transaction --quick --lock-tables=false gysmol|gzip > /home/jmanzanilla/Documentos/backup-server-db-gysmol.gz
+
+
+
+mkfs.ext4 -L produccion /dev/vdc1
+
+neutron port-create --fixed-ip ip_address=172.16.10.227 --security-group 9ff62bcc-19c5-4e7b-861d-bf468d358e34 net-vlan-10
+
+| Field                 | Value                                                                                |
++-----------------------+--------------------------------------------------------------------------------------+
+| admin_state_up        | True                                                                                 |
+| allowed_address_pairs |                                                                                      |
+| binding:host_id       |                                                                                      |
+| binding:profile       | {}                                                                                   |
+| binding:vif_details   | {}                                                                                   |
+| binding:vif_type      | unbound                                                                              |
+| binding:vnic_type     | normal                                                                               |
+| device_id             |                                                                                      |
+| device_owner          |                                                                                      |
+| fixed_ips             | {"subnet_id": "74e5e7fb-654b-43b4-875e-fecdc44d834c", "ip_address": "172.16.10.227"} |
+| id                    | 688750f2-6c04-4f1f-aa00-52ca48f9afca                                                 |
+| mac_address           | fa:16:3e:fa:02:9b                                                                    |
+| name                  |                                                                                      |
+| network_id            | fc890325-056d-43be-91a4-b37be0762aa9                                                 |
+| security_groups       | 9ff62bcc-19c5-4e7b-861d-bf468d358e34                                                 |
+| status                | DOWN                                                                                 |
+| tenant_id             | 3e611e2108db4a638b4845b7715e25ca                                                     |
++-----------------------+--------------------------------------------------------------------------------------+
+
++-----------------------+--------------------------------------------------------------------------------------+
+| Field                 | Value                                                                                |
++-----------------------+--------------------------------------------------------------------------------------+
+| admin_state_up        | True                                                                                 |
+| allowed_address_pairs |                                                                                      |
+| binding:host_id       |                                                                                      |
+| binding:profile       | {}                                                                                   |
+| binding:vif_details   | {}                                                                                   |
+| binding:vif_type      | unbound                                                                              |
+| binding:vnic_type     | normal                                                                               |
+| device_id             |                                                                                      |
+| device_owner          |                                                                                      |
+| fixed_ips             | {"subnet_id": "74e5e7fb-654b-43b4-875e-fecdc44d834c", "ip_address": "172.16.10.229"} |
+| id                    | acccf502-7202-47cf-abd5-00b01eb786e6                                                 |
+| mac_address           | fa:16:3e:34:6a:1c                                                                    |
+| name                  |                                                                                      |
+| network_id            | fc890325-056d-43be-91a4-b37be0762aa9                                                 |
+| security_groups       | 9ff62bcc-19c5-4e7b-861d-bf468d358e34                                                 |
+| status                | DOWN                                                                                 |
+| tenant_id             | 3e611e2108db4a638b4845b7715e25ca 
+
+
+neutron port-create --fixed-ip ip_address=172.16.10.228 --security-group 9ff62bcc-19c5-4e7b-861d-bf468d358e34 net-vlan-10
+
++-----------------------+--------------------------------------------------------------------------------------+
+| Field                 | Value                                                                                |
++-----------------------+--------------------------------------------------------------------------------------+
+| admin_state_up        | True                                                                                 |
+| allowed_address_pairs |                                                                                      |
+| binding:host_id       |                                                                                      |
+| binding:profile       | {}                                                                                   |
+| binding:vif_details   | {}                                                                                   |
+| binding:vif_type      | unbound                                                                              |
+| binding:vnic_type     | normal                                                                               |
+| device_id             |                                                                                      |
+| device_owner          |                                                                                      |
+| fixed_ips             | {"subnet_id": "74e5e7fb-654b-43b4-875e-fecdc44d834c", "ip_address": "172.16.10.228"} |
+| id                    | aeba44e8-d353-4116-b1e4-a8498b569d58                                                 |
+| mac_address           | fa:16:3e:66:bd:79                                                                    |
+| name                  |                                                                                      |
+| network_id            | fc890325-056d-43be-91a4-b37be0762aa9                                                 |
+| security_groups       | 9ff62bcc-19c5-4e7b-861d-bf468d358e34                                                 |
+| status                | DOWN                                                                                 |
+| tenant_id             | 3e611e2108db4a638b4845b7715e25ca                                                     |
++-----------------------+--------------------------------------------------------------------------------------+
+
+
+neutron port-list|grep 172.16.10.192|awk '{print $2}'
+e81ef1ea-4d48-41b8-96c8-81ecb192ea67
+
+10.41
+3f38a1ae-91b1-4c62-8d88-4cefcbe294c5
+
+10.42
+124f37ef-06f0-4ab7-82ec-a39dfdd011f3
+
+neutron port-list|grep 172.16.10.193|awk '{print $2}'
+28fa88ba-ce1a-4b85-b668-310ae9330962
+
+
+
+neutron port-update e81ef1ea-4d48-41b8-96c8-81ecb192ea67 --allowed_address_pairs list=true type=dict ip_address=172.16.10.228
+
+neutron port-update 3f38a1ae-91b1-4c62-8d88-4cefcbe294c5 --allowed_address_pairs list=true type=dict ip_address=172.16.10.229
+neutron port-update 124f37ef-06f0-4ab7-82ec-a39dfdd011f3 --allowed_address_pairs list=true type=dict ip_address=172.16.10.229
+
+neutron port-update 28fa88ba-ce1a-4b85-b668-310ae9330962 --allowed_address_pairs list=true type=dict ip_address=172.16.10.228
+
+
+pcs cluster auth vm-172-16-10-37 vm-172-16-10-194
+
+
+pcs cluster setup --name cluster_postgres vm-172-16-10-37 vm-172-16-10-194
+
+
+
+pcs resource create virtual_ip ocf:heartbeat:IPaddr2 ip=172.16.10.227 cidr_netmask=32 nic=eth0:0 op monitor interval=30s
+
+
+scp /etc/init.d/postgresp2p vm-172-16-10-194:/etc/init.d/
+
+
+pcs constraint location svcpostgresp2p prefers vm-172-16-10-37=50
+
+
+ pcs cluster auth vm-172-16-10-192 vm-172-16-10-193
+
+
+
+pcs cluster setup --name cluster_postgres vm-172-16-10-192 vm-172-16-10-193
+
+pcs resource create virtual_ip ocf:heartbeat:IPaddr2 ip=172.16.10.228 cidr_netmask=32 nic=eth0:0 op monitor interval=30s
+
+resource postgresql {
+    protocol C;
+    disk {
+        # on I/O errors, detach device
+        on-io-error detach;
+    }
+
+    meta-disk internal;
+    device /dev/drbd1;
+
+    syncer {
+        verify-alg sha1;
+        rate 40M;
+    }
+
+    net {
+        allow-two-primaries;
+    }
+
+    on vm-172-16-10-192.cloud0.at.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.11.174:7789;
+        meta-disk internal;
+    }
+    on vm-172-16-10-193.cloud0.at.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.11.178:7789;
+        meta-disk internal;
+    }
+}
+
+resource postgresql {
+    protocol C;
+    disk {
+        # on I/O errors, detach device
+        on-io-error detach;
+    }
+
+    meta-disk internal;
+    device /dev/drbd1;
+
+    syncer {
+        verify-alg sha1;
+        rate 40M;
+    }
+
+    net {
+        allow-two-primaries;
+    }
+
+    on vm-172-16-10-192.cloud0.hc.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.10.192:7789;
+        meta-disk internal;
+    }
+    on vm-172-16-10-193.cloud0.hc.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.10.193:7789;
+        meta-disk internal;
+    }
+}
+
+
+
+ln -s /usr/pgsql-9.5/ /postgres/binario/9.5
+
+scp /etc/init.d/postgresp2p vm-172-16-10-193:/etc/init.d/
+
+pcs constraint location svcpostgresp2p prefers vm-172-10-192-29=50
+
+pcs cluster stop vm-172-16-10-192
+
+echo "export PATH=\$PATH:/usr/pgsql-9.5/bin/" >> /var/lib/pgsql/.pgsql_profile
+
+pg_ctl -D /postgres/data/gysmo initdb
+
+ssh-copy-id -i /root/.ssh/id_dsa.pub root@172.16.10.192
+
+
+
+export PATH=\$PATH:/usr/pgsql-9.5/bin/
+
+
+
+
+resource postgresql {
+    protocol C;
+    disk {
+        # on I/O errors, detach device
+        on-io-error detach;
+    }
+
+    meta-disk internal;
+    device /dev/drbd1;
+
+    syncer {
+        verify-alg sha1;
+        rate 40M;
+    }
+
+    net {
+        allow-two-primaries;
+    }
+
+    on vm-172-16-10-192.cloud0.hc.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.10.192:7789;
+        meta-disk internal;
+    }
+    on vm-172-16-10-193.cloud0.hc.p2p.dom {
+        device /dev/drbd0;
+        disk /dev/vdb;
+        address 172.16.10.193:7789;
+        meta-disk internal;
+    }
+}
+
+
+
+
+
+
+scp /etc/init.d/postgresp2p vm-172-16-10-193:/etc/init.d/
+
+pcs constraint location svcpostgresp2p prefers vm-172-16-10-192=50
+
+ pcs cluster stop vm-172-16-10-192
+
+
+
+logfile /var/log/ha-log
+logfacility local0
+keepalive 2
+deadtime 30
+initdead 120
+ucast eth1 172.16.11.118
+udpport 694
+auto_failback on
+node vm-172-16-10-41.cloud0.hc.p2p.dom
+node vm-172-16-10-42.cloud0.hc.p2p.dom
+
+debug 1
+debugfile /var/log/ha-debug
+logfile /var/log/ha-log
+logfacility local0
+keepalive 2
+deadtime 30
+initdead 120
+ucast eth1 172.16.11.119
+udpport 694
+auto_failback on
+node vm-172-16-10-41.cloud0.hc.p2p.dom
+node vm-172-16-10-42.cloud0.hc.p2p.dom
+
+vm-172-16-10-41.cloud0.hc.p2p.dom IPaddr::172.16.10.229/24/eth0:0 drbddisk::postgresql Filesystem::/dev/drbd/by-res/postgresql::/postgres::ext4::defaults postgresp2p
+
+
