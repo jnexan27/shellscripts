@@ -1,0 +1,58 @@
+#!/bin/bash
+#Script automatizado para creacion de LAMP en Centos
+#Desarrollado por: Jesus Manzanilla 
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+	echo "Verificando librerias instaladas en el Sistema operativo"
+ 		git_installed=`which git |wc -l`
+		webserver=`which httpd mysql php |wc -l`
+		mariadb=`which mysql |wc -l`
+	if [ $git_installed == 0 ] 
+		then
+	        echo "Instalando git para servidor apl"
+        	yum -y upgrade
+       		yum -y install git
+		else
+	echo "Ya se encuentra instalado"
+		fi
+	echo ""
+	if [ $webserver == 0 ]
+		then
+	echo "Instalando Apache,Php,My_sql"
+		yum -y install httpd
+		yum -y install php php-mysql
+		yum -y install php-ldap
+		yum -y install php-pgsql
+	echo "Finalizado con exito"
+		else
+	echo "Los servicios Web ya se encuentran instalados"
+	echo "Continuando con la configuracion de My_sql"
+		fi
+		sleep 5
+	echo "Agregando los repositorios de my_sql on Centos"
+	if [ -f /etc/yum.repos.d/mariadb101.repo ]
+		then
+	echo "Ya se encuentra el archivo de repositorio "
+		else
+		touch /etc/yum.repos.d/mariadb101.repo
+        echo "# Implementado por: Infraestructura TI" >> /etc/yum.repos.d/mariadb101.repo
+        echo "#Generado el $DATE automaticamente por APL Installer of Infraestructure" >> /etc/yum.repos.d/mariadb101.repo
+        echo "name = MariaDB" >> /etc/yum.repos.d/mariadb101.repo
+        echo "baseurl = http://172.16.15.25/mariadb-centos/10.1/centos7-amd64" >> /etc/yum.repos.d/mariadb101.repo
+	echo "gpgkey=http://172.16.15.25/mariadb-centos/RPM-GPG-KEY-MariaDB" >> /etc/yum.repos.d/mariadb101.repo
+	echo "gpgcheck=1" >> /etc/yum.repos.d/mariadb101.repo
+	echo "Agregado"
+	fi
+		sleep 5
+	echo "Instalando servicios de My_sql"
+		if [ $mariadb == 0 ]
+		then
+		yum -y install mysql-server
+		else
+		echo "ya esta instalado el servidor de Base de datos"
+		sleep 5
+	fi
+		echo "El sistema reiniciara los servicios de apache"
+		systemctl restart httpd.services
+		sleep 2
+		echo "Finalizada la configuracion, Gracias por utilizar el Script Automatizado"

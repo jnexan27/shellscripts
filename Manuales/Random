@@ -1,0 +1,22 @@
+mv /postgres/data/gysmo_cc3/pg_xlog /postgres/wall/gysmo_cc3
+ln -s /postgres/wall/gysmo_cc3 /postgres/data/gysmo_cc3/pg_xlog
+
+mv /postgres/data/gysmo_cc3/postgresql.conf /postgres/data/gysmo_cc3/postgresql.conf.ORIGINAL
+mv /postgres/data/gysmo_cc3/pg_hba.conf /postgres/data/gysmo_cc3/pg_hba.conf.ORIGINAL
+
+create role ilguerrero login;
+ALTER ROLE ilguerrero WITH PASSWORD 'P@ssw0rd';
+ALTER ROLE ilguerrero WITH createdb;
+ALTER ROLE ilguerrero WITH createrole;
+ALTER ROLE ilguerrero WITH superuser;
+create role gysmo_cc login;
+ALTER ROLE gysmo_cc WITH PASSWORD 'P@ssw0rd';
+create role actl_gysmo_cc;
+create role cons_gysmo_cc;
+CREATE DATABASE gysmo WITH OWNER = gysmo_cc;
+ALTER DATABASE gysmo SET search_path=gysmo_cc,public,"$user";
+ /q
+2.- psql -U postgres -d gysmo -p 9911 < “/postgres/backup/estructura_gysmo.sql
+3.- vacuumdb -U postgres -p 9911 -a -z
+
+mysqldump -u osticketuser -pd4ng3r08s --single-transaction --quick osticketdb|gzip > /workdir/backup-osticketdb.gz

@@ -1,0 +1,24 @@
+#!/bin/bash 
+#Script desarrollado por Jesus Manzanilla Analista de Infraestructura de CT
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+		
+		echo "Validando si tienes los privilegios necesarios para esta instalacion"
+			if [ $(id -u) -eq 0 ]; then
+		echo "Se procede a actualizar los indices del repositorio local"
+		sleep 2
+		sudo apt-get update ; apt-get upgrade -y
+		echo "Configurando repositorios locales espere un momento"
+		sleep 2
+		echo "Configurado con exito"
+		echo "Instalando librerias de apache"
+		apt-get install apache -y && apt-get install 
+else
+	clear
+	echo -e "\n"
+tput cup 1 18 ; echo -n "*************************************************************************************"
+tput cup 2 18 ; echo -n "HOUSTON TENEMOS UN PROBLEMA, EL SCRIPT SE EJECUTA UNICAMENTE COMO ROOT (NO USAR SUDO)"
+tput cup 3 18 ; echo -n "*************************************************************************************"
+
+
+
+
