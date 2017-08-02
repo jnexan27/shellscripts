@@ -35,4 +35,4 @@ PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 	echo "Finalizando Configuraciones espere ..."
 		sleep 3
 	echo "Configuracion Finalizada Saliendo del Script, Creado Por el Dpto De Infraestructura"
-                reboot
+		reboot

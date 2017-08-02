@@ -1,0 +1,72 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:             rotation_survey
+# Required-Start:    $network $syslog $named $local_fs $remote_fs
+# Required-Stop:     $network $syslog $named $local_fs $remote_fs
+# Should-Start:      dahdi misdn lcr wanrouter mysql postgresql
+# Should-Stop:       dahdi misdn lcr wanrouter mysql postgresql
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    rotation_survey
+# Description:          rotation_survey
+### END INIT INFO
+#
+# Script de Gestion de Rotation Survey
+# Creado por Infraestructura TI | Noviembre 2015
+#
+# 
+# Credits: 
+# Created by Jonathan Melendez el 04/11/2015
+#
+# Start and Stop Rotation Survey
+
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+#Declarando Funciones y Variables
+
+start()
+	{
+	nohup /usr/bin/php -f /var/www/gysmo/script/script/rotation_survey_hour.php gysmo </dev/null &>/var/log/gysmo-sincro/rotation_survey_hour-gysmo.log &
+	nohup /usr/bin/php -f /var/www/banesco/script/script/rotation_survey_hour.php banesco </dev/null &>/var/log/gysmo-sincro/rotation_survey_hour-banesco.log &
+	nohup /usr/bin/php -f /var/www/jazztel/script/script/rotation_survey_hour.php jazztel </dev/null &>/var/log/gysmo-sincro/rotation_survey_hour-jazztel.log &
+	echo "Daemon Status Process for Rotation Survey Inicialized in all Campaing"
+	}
+
+stop()
+	{
+	for i in `ps aux | grep rotation_survey_hour.php | grep -v grep | awk '{print $2}'`; do kill -9  $i; done
+	TEMP=`ps aux | grep rotation_survey_hour.php | grep -v grep | wc -l`
+	if [ $TEMP -eq 0 ]
+		then
+			echo "Daemon Status Process for Rotation Survey Stopped in all Campaing"
+		else
+			echo "ERROR: The Daemon Status Process for Rotation Survey was not stopped"
+	fi
+	}
+status()
+	{
+	STATUS=`ps aux | grep rotation_survey_hour.php | grep -v grep | wc -l`
+	if [ $STATUS -eq 3 ]
+		then
+			echo "Daemon Status Process for Rotation Survey Running in all Campaing"
+		else
+			echo "Daemon Status Process for Rotation Survey Not Running in all Campaing"
+		fi
+	}
+
+case $1 in
+	start)
+	start
+	;;
+	stop)
+	stop
+	;;
+	status)
+	status
+	;;
+	*)
+	echo "Heey!! Usage: $0 start|stop|status"
+	exit 1
+	;;
+esac
+

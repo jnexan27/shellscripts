@@ -1,0 +1,10 @@
+#
+#
+# Variables especificas de asterisk - para ser implementadas con zabbix
+#
+*/1 * * * * root /usr/sbin/asterisk -x "core show calls"|/bin/grep active|/bin/awk '{print $1}' > /var/tmp/asterisk-active-calls.txt
+*/1 * * * * root /usr/sbin/asterisk -x "mfcr2 show channels"|/bin/grep -c ANSWER.\*SEIZE > /var/tmp/asterisk-active-r2-calls.txt
+*/1 * * * * root /usr/sbin/asterisk -x "sip show peers"|/bin/awk '{print $7}'|/bin/grep -c OK > /var/tmp/asterisk-active-sip-peers.txt
+*/5 * * * * root /usr/sbin/asterisk -x "mfcr2 show channels"|/bin/grep -c "VE" > /var/tmp/asterisk-total-r2-ports.txt
+*/5 * * * * root /usr/sbin/asterisk -x "mfcr2 show channels"|/bin/grep VE|/bin/grep -cv 0x > /var/tmp/asterisk-r2-connected-ports.txt
+*/5 * * * * root /usr/sbin/asterisk -x "mfcr2 show channels"|/bin/grep VE|/bin/grep -c 0x > /var/tmp/asterisk-r2-not-connected-ports.txt

@@ -1,0 +1,9 @@
+####################################
+#
+SHELL=/bin/bash
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+#
+#
+10 */1 * * * root /usr/local/bin/compute-and-instances-full-report.sh > /var/www/html/openstack-instances.txt
+#
+#

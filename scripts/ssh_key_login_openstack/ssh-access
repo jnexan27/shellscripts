@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Script de Control para Acceso SSH OpenStack
+# Creado por el Departamento de Infraestructura TI | 2015
+# 
+# Credits: 
+# Created by Jonathan Melendez
+#
+# ESPECIFICA EL USUARIO
+#
+# Start and Stop callcenter services
+
+PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+
+if [ -f /home/jmelendez/.ssh/openstack/openstack-infra ] 
+then 
+	pathssh='/home/jmelendez/.ssh/openstack/openstack-infra'
+
+		if [ ! -z $1 ]
+			then
+				ssh -i $pathssh root@$1
+			else
+			echo "Heeey!! Especifica la IP Tio, Ostia no soy adivino!!!" 
+		fi
+else 
+	echo "Mi pana no tienes el Key, agregalo"
+fi

@@ -1,0 +1,7 @@
+zabbix_sender -k jazztel.verif.convert -o `grep -c 1 /tmp/jazztel_conversion.log` -c /etc/zabbix/zabbix_agentd.conf -s `hostname`
+
+
+zabbix_sender -k jazztel.verif.transfer -o `grep -c 1 /tmp/jazztel_transferencia.log` -c /etc/zabbix/zabbix_agentd.conf -s `hostname`
+
+
+

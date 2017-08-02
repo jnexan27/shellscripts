@@ -1,0 +1,8 @@
+iface eth0 inet static
+        address 172.16.10.53
+        netmask 255.255.255.0
+        broadcast 172.16.10.255
+        gateway 172.16.10.254
+        up route add -host 169.254.169.254/32 gw 172.16.10.35
+        dns-nameservers 172.16.15.25 172.16.17.1 172.16.17.2
+        dns-search cloud0.hc.p2p.dom
