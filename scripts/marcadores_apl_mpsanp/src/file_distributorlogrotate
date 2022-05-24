@@ -1,9 +1,0 @@
-CANTVRUTA/logs/marcadores/*.log
-{
-weekly
-copytruncate
-rotate 4
-compress
-missingok
-}
-
